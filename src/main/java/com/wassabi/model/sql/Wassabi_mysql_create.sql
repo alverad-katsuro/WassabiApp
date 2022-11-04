@@ -15,11 +15,11 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Cliente (
 	cliente_id int(30) NOT NULL AUTO_INCREMENT,
+	endereco_cliente int(30) NOT NULL,
 	cliente_nome varchar(30) NOT NULL,
 	cliente_sobrenome varchar(60) NOT NULL,
 	cliente_cpf varchar(14) NOT NULL,
 	cliente_telefone varchar(15) NOT NULL,
-	cliente_endereco int(30) NOT NULL,
 	PRIMARY KEY (cliente_id)
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE Cartao (
 
 ALTER TABLE Produto ADD CONSTRAINT Produto_fk0 FOREIGN KEY (produto_categoria) REFERENCES Categoria(categoria_id);
 
-ALTER TABLE Cliente ADD CONSTRAINT Cliente_fk0 FOREIGN KEY (cliente_endereco) REFERENCES Endereco(endereco_id);
+ALTER TABLE Endereco ADD CONSTRAINT Endereco_fk0 FOREIGN KEY (endereco_cliente) REFERENCES Cliente(cliente_id);
 
 ALTER TABLE Cartao ADD CONSTRAINT Cartao_fk0 FOREIGN KEY (cartao_cliente) REFERENCES Cliente(cliente_id);
 
