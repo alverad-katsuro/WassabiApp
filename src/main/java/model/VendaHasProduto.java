@@ -33,7 +33,11 @@ public class VendaHasProduto implements java.io.Serializable {
 		this.quantidade = quantidade;
 	}
 
-	@EmbeddedId
+	
+    /** 
+     * @return VendaHasProdutoId
+     */
+    @EmbeddedId
 
 	@AttributeOverrides({ @AttributeOverride(name = "vendaId", column = @Column(name = "venda_id", nullable = false)),
 			@AttributeOverride(name = "produtoId", column = @Column(name = "produto_id", nullable = false)) })
@@ -41,36 +45,64 @@ public class VendaHasProduto implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(VendaHasProdutoId id) {
+	
+    /** 
+     * @param id
+     */
+    public void setId(VendaHasProdutoId id) {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+    /** 
+     * @return Produto
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "produto_id", nullable = false, insertable = false, updatable = false)
 	public Produto getProduto() {
 		return this.produto;
 	}
 
-	public void setProduto(Produto produto) {
+	
+    /** 
+     * @param produto
+     */
+    public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+    /** 
+     * @return Venda
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "venda_id", nullable = false, insertable = false, updatable = false)
 	public Venda getVenda() {
 		return this.venda;
 	}
 
-	public void setVenda(Venda venda) {
+	
+    /** 
+     * @param venda
+     */
+    public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
 
-	@Column(name = "quantidade", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "quantidade", nullable = false)
 	public int getQuantidade() {
 		return this.quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	
+    /** 
+     * @param quantidade
+     */
+    public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 

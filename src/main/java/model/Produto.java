@@ -47,7 +47,11 @@ public class Produto implements java.io.Serializable {
 		this.vendaHasProdutos = vendaHasProdutos;
 	}
 
-	@Id
+	
+    /** 
+     * @return Integer
+     */
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "produto_id", unique = true, nullable = false)
@@ -55,53 +59,97 @@ public class Produto implements java.io.Serializable {
 		return this.produtoId;
 	}
 
-	public void setProdutoId(Integer produtoId) {
+	
+    /** 
+     * @param produtoId
+     */
+    public void setProdutoId(Integer produtoId) {
 		this.produtoId = produtoId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+    /** 
+     * @return Categoria
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "produto_categoria", nullable = false)
 	public Categoria getCategoria() {
 		return this.categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	
+    /** 
+     * @param categoria
+     */
+    public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-	@Column(name = "produto_nome", nullable = false, length = 30)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "produto_nome", nullable = false, length = 30)
 	public String getProdutoNome() {
 		return this.produtoNome;
 	}
 
-	public void setProdutoNome(String produtoNome) {
+	
+    /** 
+     * @param produtoNome
+     */
+    public void setProdutoNome(String produtoNome) {
 		this.produtoNome = produtoNome;
 	}
 
-	@Column(name = "produto_preco", nullable = false, precision = 30)
+	
+    /** 
+     * @return double
+     */
+    @Column(name = "produto_preco", nullable = false, precision = 30)
 	public double getProdutoPreco() {
 		return this.produtoPreco;
 	}
 
-	public void setProdutoPreco(double produtoPreco) {
+	
+    /** 
+     * @param produtoPreco
+     */
+    public void setProdutoPreco(double produtoPreco) {
 		this.produtoPreco = produtoPreco;
 	}
 
-	@Column(name = "produto_descricao", nullable = false, length = 80)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "produto_descricao", nullable = false, length = 80)
 	public String getProdutoDescricao() {
 		return this.produtoDescricao;
 	}
 
-	public void setProdutoDescricao(String produtoDescricao) {
+	
+    /** 
+     * @param produtoDescricao
+     */
+    public void setProdutoDescricao(String produtoDescricao) {
 		this.produtoDescricao = produtoDescricao;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	
+    /** 
+     * @return Set<VendaHasProduto>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
 	public Set<VendaHasProduto> getVendaHasProdutos() {
 		return this.vendaHasProdutos;
 	}
 
-	public void setVendaHasProdutos(Set<VendaHasProduto> vendaHasProdutos) {
+	
+    /** 
+     * @param vendaHasProdutos
+     */
+    public void setVendaHasProdutos(Set<VendaHasProduto> vendaHasProdutos) {
 		this.vendaHasProdutos = vendaHasProdutos;
 	}
 

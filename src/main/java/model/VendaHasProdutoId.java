@@ -21,25 +21,46 @@ public class VendaHasProdutoId implements java.io.Serializable {
 		this.produtoId = produtoId;
 	}
 
-	@Column(name = "venda_id", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "venda_id", nullable = false)
 	public int getVendaId() {
 		return this.vendaId;
 	}
 
-	public void setVendaId(int vendaId) {
+	
+    /** 
+     * @param vendaId
+     */
+    public void setVendaId(int vendaId) {
 		this.vendaId = vendaId;
 	}
 
-	@Column(name = "produto_id", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "produto_id", nullable = false)
 	public int getProdutoId() {
 		return this.produtoId;
 	}
 
-	public void setProdutoId(int produtoId) {
+	
+    /** 
+     * @param produtoId
+     */
+    public void setProdutoId(int produtoId) {
 		this.produtoId = produtoId;
 	}
 
-	public boolean equals(Object other) {
+	
+    /** 
+     * @param other
+     * @return boolean
+     */
+    public boolean equals(Object other) {
 		if ((this == other))
 			return true;
 		if ((other == null))
@@ -51,7 +72,11 @@ public class VendaHasProdutoId implements java.io.Serializable {
 		return (this.getVendaId() == castOther.getVendaId()) && (this.getProdutoId() == castOther.getProdutoId());
 	}
 
-	public int hashCode() {
+	
+    /** 
+     * @return int
+     */
+    public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getVendaId();

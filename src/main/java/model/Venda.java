@@ -40,7 +40,11 @@ public class Venda implements java.io.Serializable {
 		this.vendaHasProdutos = vendaHasProdutos;
 	}
 
-	@Id
+	
+    /** 
+     * @return Integer
+     */
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "venda_id", unique = true, nullable = false)
@@ -48,35 +52,63 @@ public class Venda implements java.io.Serializable {
 		return this.vendaId;
 	}
 
-	public void setVendaId(Integer vendaId) {
+	
+    /** 
+     * @param vendaId
+     */
+    public void setVendaId(Integer vendaId) {
 		this.vendaId = vendaId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+    /** 
+     * @return Cliente
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "venda_cliente", nullable = false)
 	public Cliente getCliente() {
 		return this.cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	
+    /** 
+     * @param cliente
+     */
+    public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	@Column(name = "venda_total", nullable = false, precision = 30)
+	
+    /** 
+     * @return double
+     */
+    @Column(name = "venda_total", nullable = false, precision = 30)
 	public double getVendaTotal() {
 		return this.vendaTotal;
 	}
 
-	public void setVendaTotal(double vendaTotal) {
+	
+    /** 
+     * @param vendaTotal
+     */
+    public void setVendaTotal(double vendaTotal) {
 		this.vendaTotal = vendaTotal;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
+	
+    /** 
+     * @return Set<VendaHasProduto>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
 	public Set<VendaHasProduto> getVendaHasProdutos() {
 		return this.vendaHasProdutos;
 	}
 
-	public void setVendaHasProdutos(Set<VendaHasProduto> vendaHasProdutos) {
+	
+    /** 
+     * @param vendaHasProdutos
+     */
+    public void setVendaHasProdutos(Set<VendaHasProduto> vendaHasProdutos) {
 		this.vendaHasProdutos = vendaHasProdutos;
 	}
 

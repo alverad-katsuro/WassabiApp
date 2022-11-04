@@ -35,7 +35,11 @@ public class Categoria implements java.io.Serializable {
 		this.produtos = produtos;
 	}
 
-	@Id
+	
+    /** 
+     * @return Integer
+     */
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "categoria_id", unique = true, nullable = false)
@@ -43,25 +47,45 @@ public class Categoria implements java.io.Serializable {
 		return this.categoriaId;
 	}
 
-	public void setCategoriaId(Integer categoriaId) {
+	
+    /** 
+     * @param categoriaId
+     */
+    public void setCategoriaId(Integer categoriaId) {
 		this.categoriaId = categoriaId;
 	}
 
-	@Column(name = "categoria_descricao", nullable = false, length = 60)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "categoria_descricao", nullable = false, length = 60)
 	public String getCategoriaDescricao() {
 		return this.categoriaDescricao;
 	}
 
-	public void setCategoriaDescricao(String categoriaDescricao) {
+	
+    /** 
+     * @param categoriaDescricao
+     */
+    public void setCategoriaDescricao(String categoriaDescricao) {
 		this.categoriaDescricao = categoriaDescricao;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+	
+    /** 
+     * @return Set<Produto>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
 	public Set<Produto> getProdutos() {
 		return this.produtos;
 	}
 
-	public void setProdutos(Set<Produto> produtos) {
+	
+    /** 
+     * @param produtos
+     */
+    public void setProdutos(Set<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

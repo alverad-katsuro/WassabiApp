@@ -45,7 +45,11 @@ public class Endereco implements java.io.Serializable {
 		this.clientes = clientes;
 	}
 
-	@Id
+	
+    /** 
+     * @return Integer
+     */
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "endereco_id", unique = true, nullable = false)
@@ -53,52 +57,96 @@ public class Endereco implements java.io.Serializable {
 		return this.enderecoId;
 	}
 
-	public void setEnderecoId(Integer enderecoId) {
+	
+    /** 
+     * @param enderecoId
+     */
+    public void setEnderecoId(Integer enderecoId) {
 		this.enderecoId = enderecoId;
 	}
 
-	@Column(name = "endereco_rua", nullable = false, length = 30)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "endereco_rua", nullable = false, length = 30)
 	public String getEnderecoRua() {
 		return this.enderecoRua;
 	}
 
-	public void setEnderecoRua(String enderecoRua) {
+	
+    /** 
+     * @param enderecoRua
+     */
+    public void setEnderecoRua(String enderecoRua) {
 		this.enderecoRua = enderecoRua;
 	}
 
-	@Column(name = "endereco_bairro", nullable = false, length = 30)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "endereco_bairro", nullable = false, length = 30)
 	public String getEnderecoBairro() {
 		return this.enderecoBairro;
 	}
 
-	public void setEnderecoBairro(String enderecoBairro) {
+	
+    /** 
+     * @param enderecoBairro
+     */
+    public void setEnderecoBairro(String enderecoBairro) {
 		this.enderecoBairro = enderecoBairro;
 	}
 
-	@Column(name = "endereco_cidade", nullable = false, length = 30)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "endereco_cidade", nullable = false, length = 30)
 	public String getEnderecoCidade() {
 		return this.enderecoCidade;
 	}
 
-	public void setEnderecoCidade(String enderecoCidade) {
+	
+    /** 
+     * @param enderecoCidade
+     */
+    public void setEnderecoCidade(String enderecoCidade) {
 		this.enderecoCidade = enderecoCidade;
 	}
 
-	@Column(name = "endereco_estado", nullable = false, length = 30)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "endereco_estado", nullable = false, length = 30)
 	public String getEnderecoEstado() {
 		return this.enderecoEstado;
 	}
 
-	public void setEnderecoEstado(String enderecoEstado) {
+	
+    /** 
+     * @param enderecoEstado
+     */
+    public void setEnderecoEstado(String enderecoEstado) {
 		this.enderecoEstado = enderecoEstado;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "endereco")
+	
+    /** 
+     * @return Set<Cliente>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "endereco")
 	public Set<Cliente> getClientes() {
 		return this.clientes;
 	}
 
-	public void setClientes(Set<Cliente> clientes) {
+	
+    /** 
+     * @param clientes
+     */
+    public void setClientes(Set<Cliente> clientes) {
 		this.clientes = clientes;
 	}
 

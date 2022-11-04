@@ -31,7 +31,11 @@ public class Cartao implements java.io.Serializable {
 		this.cartaoNumero = cartaoNumero;
 	}
 
-	@EmbeddedId
+	
+    /** 
+     * @return CartaoId
+     */
+    @EmbeddedId
 
 	@AttributeOverrides({ @AttributeOverride(name = "cartaoId", column = @Column(name = "cartao_id", nullable = false)),
 			@AttributeOverride(name = "cartaoCliente", column = @Column(name = "cartao_cliente", nullable = false)) })
@@ -39,26 +43,46 @@ public class Cartao implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(CartaoId id) {
+	
+    /** 
+     * @param id
+     */
+    public void setId(CartaoId id) {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+    /** 
+     * @return Cliente
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cartao_cliente", nullable = false, insertable = false, updatable = false)
 	public Cliente getCliente() {
 		return this.cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	
+    /** 
+     * @param cliente
+     */
+    public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	@Column(name = "cartao_numero", nullable = false, length = 16)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "cartao_numero", nullable = false, length = 16)
 	public String getCartaoNumero() {
 		return this.cartaoNumero;
 	}
 
-	public void setCartaoNumero(String cartaoNumero) {
+	
+    /** 
+     * @param cartaoNumero
+     */
+    public void setCartaoNumero(String cartaoNumero) {
 		this.cartaoNumero = cartaoNumero;
 	}
 

@@ -53,7 +53,11 @@ public class Cliente implements java.io.Serializable {
 		this.cartaos = cartaos;
 	}
 
-	@Id
+	
+    /** 
+     * @return Integer
+     */
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "cliente_id", unique = true, nullable = false)
@@ -61,71 +65,131 @@ public class Cliente implements java.io.Serializable {
 		return this.clienteId;
 	}
 
-	public void setClienteId(Integer clienteId) {
+	
+    /** 
+     * @param clienteId
+     */
+    public void setClienteId(Integer clienteId) {
 		this.clienteId = clienteId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+    /** 
+     * @return Endereco
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_endereco", nullable = false)
 	public Endereco getEndereco() {
 		return this.endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	
+    /** 
+     * @param endereco
+     */
+    public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
-	@Column(name = "cliente_nome", nullable = false, length = 30)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "cliente_nome", nullable = false, length = 30)
 	public String getClienteNome() {
 		return this.clienteNome;
 	}
 
-	public void setClienteNome(String clienteNome) {
+	
+    /** 
+     * @param clienteNome
+     */
+    public void setClienteNome(String clienteNome) {
 		this.clienteNome = clienteNome;
 	}
 
-	@Column(name = "cliente_sobrenome", nullable = false, length = 60)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "cliente_sobrenome", nullable = false, length = 60)
 	public String getClienteSobrenome() {
 		return this.clienteSobrenome;
 	}
 
-	public void setClienteSobrenome(String clienteSobrenome) {
+	
+    /** 
+     * @param clienteSobrenome
+     */
+    public void setClienteSobrenome(String clienteSobrenome) {
 		this.clienteSobrenome = clienteSobrenome;
 	}
 
-	@Column(name = "cliente_cpf", nullable = false, length = 14)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "cliente_cpf", nullable = false, length = 14)
 	public String getClienteCpf() {
 		return this.clienteCpf;
 	}
 
-	public void setClienteCpf(String clienteCpf) {
+	
+    /** 
+     * @param clienteCpf
+     */
+    public void setClienteCpf(String clienteCpf) {
 		this.clienteCpf = clienteCpf;
 	}
 
-	@Column(name = "cliente_telefone", nullable = false, length = 15)
+	
+    /** 
+     * @return String
+     */
+    @Column(name = "cliente_telefone", nullable = false, length = 15)
 	public String getClienteTelefone() {
 		return this.clienteTelefone;
 	}
 
-	public void setClienteTelefone(String clienteTelefone) {
+	
+    /** 
+     * @param clienteTelefone
+     */
+    public void setClienteTelefone(String clienteTelefone) {
 		this.clienteTelefone = clienteTelefone;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+	
+    /** 
+     * @return Set<Venda>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
 	public Set<Venda> getVendas() {
 		return this.vendas;
 	}
 
-	public void setVendas(Set<Venda> vendas) {
+	
+    /** 
+     * @param vendas
+     */
+    public void setVendas(Set<Venda> vendas) {
 		this.vendas = vendas;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+	
+    /** 
+     * @return Set<Cartao>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
 	public Set<Cartao> getCartaos() {
 		return this.cartaos;
 	}
 
-	public void setCartaos(Set<Cartao> cartaos) {
+	
+    /** 
+     * @param cartaos
+     */
+    public void setCartaos(Set<Cartao> cartaos) {
 		this.cartaos = cartaos;
 	}
 

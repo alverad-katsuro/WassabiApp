@@ -21,25 +21,46 @@ public class CartaoId implements java.io.Serializable {
 		this.cartaoCliente = cartaoCliente;
 	}
 
-	@Column(name = "cartao_id", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "cartao_id", nullable = false)
 	public int getCartaoId() {
 		return this.cartaoId;
 	}
 
-	public void setCartaoId(int cartaoId) {
+	
+    /** 
+     * @param cartaoId
+     */
+    public void setCartaoId(int cartaoId) {
 		this.cartaoId = cartaoId;
 	}
 
-	@Column(name = "cartao_cliente", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "cartao_cliente", nullable = false)
 	public int getCartaoCliente() {
 		return this.cartaoCliente;
 	}
 
-	public void setCartaoCliente(int cartaoCliente) {
+	
+    /** 
+     * @param cartaoCliente
+     */
+    public void setCartaoCliente(int cartaoCliente) {
 		this.cartaoCliente = cartaoCliente;
 	}
 
-	public boolean equals(Object other) {
+	
+    /** 
+     * @param other
+     * @return boolean
+     */
+    public boolean equals(Object other) {
 		if ((this == other))
 			return true;
 		if ((other == null))
@@ -52,7 +73,11 @@ public class CartaoId implements java.io.Serializable {
 				&& (this.getCartaoCliente() == castOther.getCartaoCliente());
 	}
 
-	public int hashCode() {
+	
+    /** 
+     * @return int
+     */
+    public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getCartaoId();
