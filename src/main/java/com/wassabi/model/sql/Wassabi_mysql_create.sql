@@ -17,7 +17,6 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Cliente (
 	cliente_id int(30) NOT NULL AUTO_INCREMENT,
-	endereco_cliente int(30) NOT NULL,
 	cliente_nome varchar(30) NOT NULL,
 	cliente_sobrenome varchar(60) NOT NULL,
 	cliente_cpf varchar(14) NOT NULL,
