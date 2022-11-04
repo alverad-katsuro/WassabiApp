@@ -43,35 +43,31 @@
       <artifactId>geolatte-geom</artifactId>
       <version>1.4.0</version>
     </dependency>
-    <dependency>
-      <groupId>org.hibernate.common</groupId>
-      <artifactId>hibernate-commons-annotations</artifactId>
-      <version>5.1.0.Final</version>
-    </dependency>
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.6.13.Final</version>
+      <version>5.6.12.Final</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-envers</artifactId>
-      <version>5.6.13.Final</version>
+      <version>5.6.12.Final</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jpamodelgen</artifactId>
-      <version>5.6.13.Final</version>
+      <version>5.6.12.Final</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-osgi</artifactId>
-      <version>5.6.13.Final</version>
+      <version>5.6.12.Final</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-spatial</artifactId>
-      <version>5.6.13.Final</version>
+      <version>5.6.12.Final</version>
     </dependency>
     <dependency>
       <groupId>com.sun.istack</groupId>
@@ -183,7 +179,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>17</release>
+          <release>18</release>
         </configuration>
       </plugin>
     </plugins>
