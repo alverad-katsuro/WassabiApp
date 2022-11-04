@@ -16,6 +16,10 @@ public class App {
         
     }
 
+    
+    /** 
+     * @return EntityManagerFactory
+     */
     public static EntityManagerFactory getEntityManagerFactory() {
         return entityManagerFactory;
     } 

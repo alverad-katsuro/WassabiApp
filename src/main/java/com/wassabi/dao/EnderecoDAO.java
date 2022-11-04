@@ -9,12 +9,20 @@ import com.wassabi.model.Endereco;
 import com.wassabi.model.EnderecoId;
 
 public class EnderecoDAO {
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         
     }
 
     private EnderecoDAO() {}
 
+    
+    /** 
+     * @param endereco
+     */
     public static void createEndereco(Endereco endereco){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -29,6 +37,10 @@ public class EnderecoDAO {
         System.out.println("Endereço cadastrado com sucesso");
     }
 
+    
+    /** 
+     * @param endereco
+     */
     public static void updateEndereco(Endereco endereco){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -43,6 +55,12 @@ public class EnderecoDAO {
         System.out.println("Endereço atualizado com sucesso");
     }
 
+    
+    /** 
+     * @param endereco_id
+     * @param cliente_id
+     * @return Endereco
+     */
     public static Endereco findEndereco_byID(int endereco_id, int cliente_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -62,6 +80,10 @@ public class EnderecoDAO {
         }
     }
 
+    
+    /** 
+     * @param endereco
+     */
     public static void deleteEndereco(Endereco endereco){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();

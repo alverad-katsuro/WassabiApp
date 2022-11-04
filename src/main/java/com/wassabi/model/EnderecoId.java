@@ -1,5 +1,5 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:11:25 by Hibernate Tools 4.3.6.Final
+// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,25 +21,46 @@ public class EnderecoId implements java.io.Serializable {
 		this.enderecoCliente = enderecoCliente;
 	}
 
-	@Column(name = "endereco_id", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "endereco_id", nullable = false)
 	public int getEnderecoId() {
 		return this.enderecoId;
 	}
 
-	public void setEnderecoId(int enderecoId) {
+	
+    /** 
+     * @param enderecoId
+     */
+    public void setEnderecoId(int enderecoId) {
 		this.enderecoId = enderecoId;
 	}
 
-	@Column(name = "endereco_cliente", nullable = false)
+	
+    /** 
+     * @return int
+     */
+    @Column(name = "endereco_cliente", nullable = false)
 	public int getEnderecoCliente() {
 		return this.enderecoCliente;
 	}
 
-	public void setEnderecoCliente(int enderecoCliente) {
+	
+    /** 
+     * @param enderecoCliente
+     */
+    public void setEnderecoCliente(int enderecoCliente) {
 		this.enderecoCliente = enderecoCliente;
 	}
 
-	public boolean equals(Object other) {
+	
+    /** 
+     * @param other
+     * @return boolean
+     */
+    public boolean equals(Object other) {
 		if ((this == other))
 			return true;
 		if ((other == null))
@@ -52,7 +73,11 @@ public class EnderecoId implements java.io.Serializable {
 				&& (this.getEnderecoCliente() == castOther.getEnderecoCliente());
 	}
 
-	public int hashCode() {
+	
+    /** 
+     * @return int
+     */
+    public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getEnderecoId();
@@ -60,6 +85,10 @@ public class EnderecoId implements java.io.Serializable {
 		return result;
 	}
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return "EnderecoId [enderecoId=" + enderecoId + ", enderecoCliente=" + enderecoCliente + "]";

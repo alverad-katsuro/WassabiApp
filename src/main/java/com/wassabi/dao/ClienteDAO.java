@@ -11,6 +11,10 @@ import com.wassabi.model.Endereco;
 public class ClienteDAO {
     private ClienteDAO(){}
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Cliente cli = new Cliente(0, "NOME", "SOBRENOME", "000.000.000-00", "(91) 98448-7808");
 
@@ -22,6 +26,10 @@ public class ClienteDAO {
         ClienteDAO.createCliente(cli);
     }
 
+    
+    /** 
+     * @param cliente
+     */
     public static void createCliente(Cliente cliente){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -38,6 +46,10 @@ public class ClienteDAO {
         System.out.println("Cadastrado com sucesso");
     }
 
+    
+    /** 
+     * @param cliente
+     */
     public static void deleteCliente(Cliente cliente){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -51,6 +63,11 @@ public class ClienteDAO {
         System.out.println("Cliente deletado com sucesso");
     }
 
+    
+    /** 
+     * @param cliente_id
+     * @return Cliente
+     */
     public static Cliente findCliente_byID(int cliente_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
