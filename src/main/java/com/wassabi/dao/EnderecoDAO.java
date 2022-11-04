@@ -67,7 +67,7 @@ public class EnderecoDAO {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        Endereco endereco = entityManager.find(Endereco.class, new EnderecoId(endereco_id, cliente_id))
+        Endereco endereco = entityManager.find(Endereco.class, new EnderecoId(endereco_id, cliente_id));
         
         entityManager.close();
 
