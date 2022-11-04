@@ -1,3 +1,5 @@
+use wassabi;
+
 ALTER TABLE `Produto` DROP FOREIGN KEY `Produto_fk0`;
 
 ALTER TABLE `Endereco` DROP FOREIGN KEY `Endereco_fk0`;

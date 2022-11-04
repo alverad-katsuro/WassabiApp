@@ -1,5 +1,5 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 15:43:42 by Hibernate Tools 4.3.6.Final
+// Generated 4 de nov. de 2022 18:11:25 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,46 +21,25 @@ public class CartaoId implements java.io.Serializable {
 		this.cartaoCliente = cartaoCliente;
 	}
 
-	
-    /** 
-     * @return int
-     */
-    @Column(name = "cartao_id", nullable = false)
+	@Column(name = "cartao_id", nullable = false)
 	public int getCartaoId() {
 		return this.cartaoId;
 	}
 
-	
-    /** 
-     * @param cartaoId
-     */
-    public void setCartaoId(int cartaoId) {
+	public void setCartaoId(int cartaoId) {
 		this.cartaoId = cartaoId;
 	}
 
-	
-    /** 
-     * @return int
-     */
-    @Column(name = "cartao_cliente", nullable = false)
+	@Column(name = "cartao_cliente", nullable = false)
 	public int getCartaoCliente() {
 		return this.cartaoCliente;
 	}
 
-	
-    /** 
-     * @param cartaoCliente
-     */
-    public void setCartaoCliente(int cartaoCliente) {
+	public void setCartaoCliente(int cartaoCliente) {
 		this.cartaoCliente = cartaoCliente;
 	}
 
-	
-    /** 
-     * @param other
-     * @return boolean
-     */
-    public boolean equals(Object other) {
+	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
 		if ((other == null))
@@ -73,16 +52,17 @@ public class CartaoId implements java.io.Serializable {
 				&& (this.getCartaoCliente() == castOther.getCartaoCliente());
 	}
 
-	
-    /** 
-     * @return int
-     */
-    public int hashCode() {
+	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getCartaoId();
 		result = 37 * result + this.getCartaoCliente();
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        return "CartaoId [cartaoId=" + cartaoId + ", cartaoCliente=" + cartaoCliente + "]";
+    }
 
 }

@@ -1,3 +1,5 @@
+use wassabi;
+
 CREATE TABLE Produto (
 	produto_id int(30) NOT NULL AUTO_INCREMENT,
 	produto_nome varchar(30) NOT NULL,
@@ -25,11 +27,12 @@ CREATE TABLE Cliente (
 
 CREATE TABLE Endereco (
 	endereco_id int(30) NOT NULL AUTO_INCREMENT,
+    endereco_cliente int(30) NOT NULL,
 	endereco_rua varchar(30) NOT NULL,
 	endereco_bairro varchar(30) NOT NULL,
 	endereco_cidade varchar(30) NOT NULL,
 	endereco_estado varchar(30) NOT NULL,
-	PRIMARY KEY (endereco_id)
+	PRIMARY KEY (endereco_id, endereco_cliente)
 );
 
 CREATE TABLE Venda (

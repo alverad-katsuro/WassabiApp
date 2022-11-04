@@ -1,5 +1,5 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 15:43:42 by Hibernate Tools 4.3.6.Final
+// Generated 4 de nov. de 2022 18:11:25 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,46 +21,25 @@ public class VendaHasProdutoId implements java.io.Serializable {
 		this.produtoId = produtoId;
 	}
 
-	
-    /** 
-     * @return int
-     */
-    @Column(name = "venda_id", nullable = false)
+	@Column(name = "venda_id", nullable = false)
 	public int getVendaId() {
 		return this.vendaId;
 	}
 
-	
-    /** 
-     * @param vendaId
-     */
-    public void setVendaId(int vendaId) {
+	public void setVendaId(int vendaId) {
 		this.vendaId = vendaId;
 	}
 
-	
-    /** 
-     * @return int
-     */
-    @Column(name = "produto_id", nullable = false)
+	@Column(name = "produto_id", nullable = false)
 	public int getProdutoId() {
 		return this.produtoId;
 	}
 
-	
-    /** 
-     * @param produtoId
-     */
-    public void setProdutoId(int produtoId) {
+	public void setProdutoId(int produtoId) {
 		this.produtoId = produtoId;
 	}
 
-	
-    /** 
-     * @param other
-     * @return boolean
-     */
-    public boolean equals(Object other) {
+	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
 		if ((other == null))
@@ -72,16 +51,17 @@ public class VendaHasProdutoId implements java.io.Serializable {
 		return (this.getVendaId() == castOther.getVendaId()) && (this.getProdutoId() == castOther.getProdutoId());
 	}
 
-	
-    /** 
-     * @return int
-     */
-    public int hashCode() {
+	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getVendaId();
 		result = 37 * result + this.getProdutoId();
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        return "VendaHasProdutoId [vendaId=" + vendaId + ", produtoId=" + produtoId + "]";
+    }
 
 }
