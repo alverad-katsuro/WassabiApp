@@ -8,120 +8,120 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import com.wassabi.App;
-import com.wassabi.model.Cliente;
+import com.wassabi.model.Venda;
 
 /**
-* Interface para realizar o cadastro do Cliente.
+* Interface para realizar o cadastro do Venda.
 * @author Alfredo Gabriel
 * @version 1.0
 * @since 04/11/2022
 */
-public class ClienteDAO {
+public class VendaDAO {
 
-    private ClienteDAO(){}
+    private VendaDAO(){}
       
     /** 
-     * Função responsavel por armazenar os clientes no banco de dados.
-     * @param cliente - Recebe um objeto cliente a fim de torna-lo permanente.
+     * Função responsavel por armazenar os vendas no banco de dados.
+     * @param venda - Recebe um objeto venda a fim de torna-lo permanente.
      */
-    public static void createCliente(Cliente cliente){
+    public static void createVenda(Venda venda){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.persist(cliente);
+        entityManager.persist(venda);
         entityManager.flush();
 
         entityTransaction.commit();
         entityManager.close();
 
-        System.out.println("Cliente cadastrado com sucesso");
+        System.out.println("Venda cadastrado com sucesso");
     }
 
     /** 
-     * Função responsavel por atualizar os dados dos clientes no banco de dados.
-     * @param cliente - Recebe um objeto Cliente com ID e os dados a serem atualizados.
+     * Função responsavel por atualizar os dados dos vendas no banco de dados.
+     * @param venda - Recebe um objeto Venda com ID e os dados a serem atualizados.
      */
-    public static void updateCliente(Cliente cliente){
+    public static void updateVenda(Venda venda){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.merge(cliente);
+        entityManager.merge(venda);
         entityManager.flush();
 
         entityTransaction.commit();
         entityManager.close();
 
-        System.out.println("Cliente atualizado com sucesso");
+        System.out.println("Venda atualizado com sucesso");
     }
 
     
     /** 
-     * Função responsavel por deletar os clientes no banco de dados.
-     * @param cliente - Recebe um objeto Cliente com ID a fim de remove-lo do banco.
+     * Função responsavel por deletar os vendas no banco de dados.
+     * @param venda - Recebe um objeto Venda com ID a fim de remove-lo do banco.
      */
-    public static void deleteCliente(Cliente cliente){
+    public static void deleteVenda(Venda venda){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        entityManager.remove(cliente);
+        entityManager.remove(venda);
 
         entityTransaction.commit();
         entityManager.close();
-        System.out.println("Cliente deletado com sucesso");
+        System.out.println("Venda deletado com sucesso");
     }
 
     
     /** 
-     * Função responsavel por encontrar um determinado cliente no banco de dados.
-     * @param cliente_id - Chave primaria do objeto cliente.
-     * @return Cliente - Se encontra-lo retorna o objeto caso contrario retorna null.
+     * Função responsavel por encontrar um determinado venda no banco de dados.
+     * @param venda_id - Chave primaria do objeto venda.
+     * @return Venda - Se encontra-lo retorna o objeto caso contrario retorna null.
      */
-    public static Cliente findCliente_byID(int cliente_id){
+    public static Venda findVenda_byID(int venda_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        Cliente cliente = entityManager.find(Cliente.class, cliente_id);
+        Venda venda = entityManager.find(Venda.class, venda_id);
         
         entityManager.close();
 
-        if (cliente != null){
-            System.out.println("Cliente encontrado");
-            return cliente;
+        if (venda != null){
+            System.out.println("Venda encontrado");
+            return venda;
         } else {
-            System.out.println("Cliente não encontrado");
+            System.out.println("Venda não encontrado");
             return null;
         }
     }
 
     
     /** 
-     * Função responsavel por retornar 10 dos clientes presentes no banco de dados.
-     * @return List<Cliente> - retorna uma lista com até 10 clientes.
+     * Função responsavel por retornar 10 dos vendas presentes no banco de dados.
+     * @return List<Venda> - retorna uma lista com até 10 vendas.
      */
-    public static List<Cliente> readClientes(){
+    public static List<Venda> readVendas(){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        TypedQuery<Cliente> clienteQuery = entityManager.createQuery("from Cliente", Cliente.class);
-        List<Cliente> clientes = clienteQuery.setMaxResults(10).getResultList();
+        TypedQuery<Venda> vendaQuery = entityManager.createQuery("from Venda", Venda.class);
+        List<Venda> vendas = vendaQuery.setMaxResults(10).getResultList();
         
         entityManager.close();
 
-        if (clientes.size() > 0){
-            System.out.println("Clientes encontrados");
-            return clientes;
+        if (vendas.size() > 0){
+            System.out.println("Vendas encontrados");
+            return vendas;
         } else {
-            System.out.println("Não foram encontrados cliente no banco de dados");
+            System.out.println("Não foram encontrados venda no banco de dados");
             return null;
         }
     }

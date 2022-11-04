@@ -38,6 +38,19 @@ public class Endereco implements java.io.Serializable {
 		this.enderecoEstado = enderecoEstado;
 	}
 
+    public Endereco(Cliente cliente, String enderecoRua, String enderecoBairro, String enderecoCidade,
+			String enderecoEstado) {
+        EnderecoId enderecoID = new EnderecoId();
+        enderecoID.setEnderecoCliente(cliente.getClienteId());
+		this.id = enderecoID;
+        enderecoID = null;
+		this.cliente = cliente;
+		this.enderecoRua = enderecoRua;
+		this.enderecoBairro = enderecoBairro;
+		this.enderecoCidade = enderecoCidade;
+		this.enderecoEstado = enderecoEstado;
+	}
+
 	
     /** 
      * @return EnderecoId
