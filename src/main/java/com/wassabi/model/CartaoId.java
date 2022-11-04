@@ -1,4 +1,4 @@
-package model;
+package com.wassabi.model;
 // Generated 4 de nov. de 2022 15:43:42 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
