@@ -11,7 +11,7 @@ CREATE TABLE Produto (
 
 CREATE TABLE Categoria (
 	categoria_id int(30) NOT NULL AUTO_INCREMENT,
-	categoria_nome varchar(30) NOT NULL,
+	categoria_nome varchar(30) NOT NULL UNIQUE,
 	categoria_descricao varchar(60) NOT NULL,
 	PRIMARY KEY (categoria_id)
 );
