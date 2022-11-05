@@ -1,141 +1,147 @@
 package com.wassabi.frontend;
 
-import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 
-import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
-public class CadastroProduto extends JPanel {
-	private JTextField TF_produto_nome;
-	private JTextField TF_produtoPreco;
+import com.wassabi.dao.CategoriaDAO;
+import com.wassabi.dao.ProdutoDAO;
+import com.wassabi.model.Categoria;
+import com.wassabi.model.Produto;
+import javax.swing.ListSelectionModel;
+
+public class CadastroProduto extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField produto_nome;
+	private JTextField produto_preco;
 
 	/**
-	 * Create the panel.
+	 * Launch the application.
 	 */
-	public CadastroProduto() {
-		setFont(new Font("Arial", Font.PLAIN, 16));
-		setBounds(100, 100, 1000, 606);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{500, 500, 0};
-		gridBagLayout.rowHeights = new int[]{606, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-		
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 0;
-		add(panel_2, gbc_panel_2);
-		
-		JLabel lblNewLabel_2_1 = new JLabel("Categoria do Produto");
-		lblNewLabel_2_1.setFont(new Font("Arial", Font.BOLD, 14));
-		
-		JList list = new JList();
-		list.setFont(new Font("Arial", Font.BOLD, 14));
-		list.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		list.setLayoutOrientation(JList.VERTICAL_WRAP);
-		list.setVisibleRowCount(10);
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"asdsad", "sadsadsa", "asdasd", "asdasd"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CadastroProduto frame = new CadastroProduto();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		list.setSelectedIndex(1);
-		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(30)
-							.addComponent(list, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel_2.createSequentialGroup()
-							.addGap(161)
-							.addComponent(lblNewLabel_2_1)))
-					.addContainerGap(31, Short.MAX_VALUE))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(80)
-					.addComponent(lblNewLabel_2_1)
-					.addGap(18)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 448, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(43, Short.MAX_VALUE))
-		);
-		panel_2.setLayout(gl_panel_2);
-		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 1;
-		gbc_panel.gridy = 0;
-		add(panel, gbc_panel);
-		
-		JTextArea TA_produtoDescricao = new JTextArea();
-		TA_produtoDescricao.setColumns(30);
-		TA_produtoDescricao.setRows(30);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JLabel lblNewLabel = new JLabel("Nome do Produto");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
-		panel.add(lblNewLabel);
-		
-		TF_produto_nome = new JTextField();
-		TF_produto_nome.setFont(new Font("Arial", Font.PLAIN, 12));
-		TF_produto_nome.setHorizontalAlignment(SwingConstants.CENTER);
-		TF_produto_nome.setToolTipText("");
-		TF_produto_nome.setColumns(50);
-		panel.add(TF_produto_nome);
-		
-		JLabel lblNewLabel_2 = new JLabel("Preço do Produto");
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel.add(lblNewLabel_2);
-		
-		TF_produtoPreco = new JTextField();
-		TF_produtoPreco.setToolTipText("");
-		TF_produtoPreco.setHorizontalAlignment(SwingConstants.CENTER);
-		TF_produtoPreco.setFont(new Font("Arial", Font.PLAIN, 12));
-		TF_produtoPreco.setColumns(50);
-		panel.add(TF_produtoPreco);
-		
-		JLabel lblNewLabel_1 = new JLabel("Descrição do Produto");
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
-		panel.add(lblNewLabel_1);
-		panel.add(TA_produtoDescricao);
-		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(1, 2, 100, 0));
-		
-		JButton BT_salvar = new JButton("Salvar");
-		panel_1.add(BT_salvar);
-		
-		JButton BT_cancelar = new JButton("Cancelar");
-		panel_1.add(BT_cancelar);
 	}
 
+	/**
+	 * Create the frame.
+	 */
+	public CadastroProduto() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 849, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		produto_nome = new JTextField();
+		produto_nome.setColumns(10);
+		
+		JLabel lblNome_1_1 = new JLabel("Preço");
+		lblNome_1_1.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		produto_preco = new JTextField();
+		produto_preco.setColumns(10);
+		
+		JLabel lblNome_1 = new JLabel("Categoria");
+		lblNome_1.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JList categoria_lista = new JList(CategoriaDAO.readCategorias().toArray());
+		categoria_lista.setSelectedIndex(1);
+		categoria_lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        Object[] categorias = CategoriaDAO.readCategorias().toArray();
+		
+		JLabel lblNome_1_1_1 = new JLabel("Descrição");
+		lblNome_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JTextArea produto_descricao = new JTextArea();
+		
+		JButton B_salvar = new JButton("Salvar");
+        B_salvar.addActionListener(ev -> {
+            Produto produto = new Produto((Categoria)categoria_lista.getSelectedValue(), produto_nome.getText(), Double.parseDouble(produto_preco.getText()), produto_descricao.getText());
+            ProdutoDAO.createProduto(produto);
+            JOptionPane.showMessageDialog(this, "Dados Armazenados com sucesso", "Dados Gravados", JOptionPane.INFORMATION_MESSAGE);
+        });
+		
+		JButton B_cancelar = new JButton("Cancelar");
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(181)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(2)
+									.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+								.addComponent(produto_nome, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+									.addComponent(lblNome_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNome_1_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+									.addComponent(produto_preco, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+									.addComponent(categoria_lista, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(175)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(produto_descricao, GroupLayout.PREFERRED_SIZE, 436, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNome_1_1_1, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(300)
+							.addComponent(B_salvar)
+							.addGap(18)
+							.addComponent(B_cancelar)))
+					.addContainerGap(218, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblNome)
+					.addGap(3)
+					.addComponent(produto_nome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(lblNome_1_1)
+					.addGap(5)
+					.addComponent(produto_preco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(29)
+					.addComponent(lblNome_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(categoria_lista)
+					.addGap(28)
+					.addComponent(lblNome_1_1_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(produto_descricao, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(B_salvar)
+						.addComponent(B_cancelar))
+					.addContainerGap())
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
 }

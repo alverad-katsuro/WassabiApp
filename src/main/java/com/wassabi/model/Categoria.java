@@ -111,13 +111,13 @@ public class Categoria implements java.io.Serializable {
 		this.produtos = produtos;
 	}
 
-    
+
     /** 
      * @return String
      */
     @Override
     public String toString() {
-        return "Categoria [categoriaId=" + categoriaId + ", categoriaDescricao=" + categoriaDescricao + "]";
+        return "Categoria [categoriaNome=" + categoriaNome + "]";
     }
 
 }
