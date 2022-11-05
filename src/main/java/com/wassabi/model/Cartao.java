@@ -29,10 +29,7 @@ public class Cartao implements java.io.Serializable {
 	}
 
     public Cartao(Cliente cliente, String cartaoNumero) {
-        CartaoId cartaoID = new CartaoId();
-        cartaoID.setCartaoCliente(cliente.getClienteId());
-        this.id = cartaoID;
-        cartaoID = null;
+        this.id = new CartaoId();
 		this.cliente = cliente;
 		this.cartaoNumero = cartaoNumero;
 	}

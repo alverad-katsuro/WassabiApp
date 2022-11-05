@@ -123,7 +123,7 @@ public class ProdutoDAO {
             return produtos;
         } else {
             System.out.println("Não foram encontrados produto no banco de dados");
-            return null;
+            return produtos;
         }
     }
 }
