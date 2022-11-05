@@ -39,6 +39,7 @@ CREATE TABLE Venda (
 	venda_id int(30) NOT NULL AUTO_INCREMENT,
 	venda_cliente int(30) NOT NULL,
 	venda_total double(30,2) NOT NULL DEFAULT 0.0,
+    venda_data DATETIME NOT NULL,
 	PRIMARY KEY (venda_id)
 );
 

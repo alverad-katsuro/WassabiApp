@@ -18,3 +18,4 @@ DROP TABLE venda_has_produto;
 DROP TABLE Venda;
 DROP TABLE Produto;
 DROP TABLE Categoria;
+DROP TABLE Cliente;
