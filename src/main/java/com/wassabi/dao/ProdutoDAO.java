@@ -8,121 +8,121 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import com.wassabi.App;
-import com.wassabi.model.Cliente;
+import com.wassabi.model.Produto;
 
 /**
-* Interface para realizar o cadastro do Cliente.
+* Interface para realizar o cadastro do Produto.
 * @author Alfredo Gabriel
 * @version 1.0
 * @since 04/11/2022
 */
-public class ClienteDAO {
+public class ProdutoDAO {
 
-    private ClienteDAO(){}
+    private ProdutoDAO(){}
       
     /** 
-     * Função responsavel por armazenar os clientes no banco de dados.
-     * @param cliente - Recebe um objeto cliente a fim de torna-lo permanente.
+     * Função responsavel por armazenar os produtos no banco de dados.
+     * @param produto - Recebe um objeto produto a fim de torna-lo permanente.
      */
-    public static void createCliente(Cliente cliente){
+    public static void createProduto(Produto produto){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.persist(cliente);
+        entityManager.persist(produto);
         entityManager.flush();
 
         entityTransaction.commit();
         entityManager.close();
 
-        System.out.println("Cliente cadastrado com sucesso");
+        System.out.println("Produto cadastrado com sucesso");
     }
 
     /** 
-     * Função responsavel por atualizar os dados dos clientes no banco de dados.
-     * @param cliente - Recebe um objeto Cliente com ID e os dados a serem atualizados.
+     * Função responsavel por atualizar os dados dos produtos no banco de dados.
+     * @param produto - Recebe um objeto Produto com ID e os dados a serem atualizados.
      */
-    public static void updateCliente(Cliente cliente){
+    public static void updateProduto(Produto produto){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.merge(cliente);
+        entityManager.merge(produto);
         entityManager.flush();
 
         entityTransaction.commit();
         entityManager.close();
 
-        System.out.println("Cliente atualizado com sucesso");
+        System.out.println("Produto atualizado com sucesso");
     }
 
     
     /** 
-     * Função responsavel por deletar os clientes no banco de dados.
-     * @param cliente - Recebe a chave primaria do objeto fim de remove-lo do banco.
+     * Função responsavel por deletar os produtos no banco de dados.
+     * @param produto - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteCliente(int cliente_id){
+    public static void deleteProduto(int produto_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-        
-        Cliente cliente = entityManager.find(Cliente.class, cliente_id);
-        entityManager.remove(cliente);
+
+        Produto produto = entityManager.find(Produto.class, produto_id);
+        entityManager.remove(produto);
 
         entityTransaction.commit();
         entityManager.close();
-        System.out.println("Cliente deletado com sucesso");
+        System.out.println("Produto deletado com sucesso");
     }
 
     
     /** 
-     * Função responsavel por encontrar um determinado cliente no banco de dados.
-     * @param cliente_id - Chave primaria do objeto cliente.
-     * @return Cliente - Se encontra-lo retorna o objeto caso contrario retorna null.
+     * Função responsavel por encontrar um determinado produto no banco de dados.
+     * @param produto_id - Chave primaria do objeto produto.
+     * @return Produto - Se encontra-lo retorna o objeto caso contrario retorna null.
      */
-    public static Cliente findCliente_byID(int cliente_id){
+    public static Produto findProduto_byID(int produto_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        Cliente cliente = entityManager.find(Cliente.class, cliente_id);
+        Produto produto = entityManager.find(Produto.class, produto_id);
         
         entityManager.close();
 
-        if (cliente != null){
-            System.out.println("Cliente encontrado");
-            return cliente;
+        if (produto != null){
+            System.out.println("Produto encontrado");
+            return produto;
         } else {
-            System.out.println("Cliente não encontrado");
+            System.out.println("Produto não encontrado");
             return null;
         }
     }
 
     
     /** 
-     * Função responsavel por retornar 10 dos clientes presentes no banco de dados.
-     * @return List<Cliente> - retorna uma lista com até 10 clientes.
+     * Função responsavel por retornar 10 dos produtos presentes no banco de dados.
+     * @return List<Produto> - retorna uma lista com até 10 produtos.
      */
-    public static List<Cliente> readClientes(){
+    public static List<Produto> readProdutos(){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        TypedQuery<Cliente> clienteQuery = entityManager.createQuery("from Cliente", Cliente.class);
-        List<Cliente> clientes = clienteQuery.setMaxResults(10).getResultList();
+        TypedQuery<Produto> produtoQuery = entityManager.createQuery("from Produto", Produto.class);
+        List<Produto> produtos = produtoQuery.setMaxResults(10).getResultList();
         
         entityManager.close();
 
-        if (clientes.size() > 0){
-            System.out.println("Clientes encontrados");
-            return clientes;
+        if (produtos.size() > 0){
+            System.out.println("Produtos encontrados");
+            return produtos;
         } else {
-            System.out.println("Não foram encontrados cliente no banco de dados");
+            System.out.println("Não foram encontrados produto no banco de dados");
             return null;
         }
     }

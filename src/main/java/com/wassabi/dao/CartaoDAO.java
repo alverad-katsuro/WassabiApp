@@ -8,121 +8,121 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import com.wassabi.App;
-import com.wassabi.model.Cliente;
+import com.wassabi.model.Cartao;
 
 /**
-* Interface para realizar o cadastro do Cliente.
+* Interface para realizar o cadastro do Cartao do cliente.
 * @author Alfredo Gabriel
 * @version 1.0
 * @since 04/11/2022
 */
-public class ClienteDAO {
+public class CartaoDAO {
 
-    private ClienteDAO(){}
+    private CartaoDAO(){}
       
     /** 
-     * Função responsavel por armazenar os clientes no banco de dados.
-     * @param cliente - Recebe um objeto cliente a fim de torna-lo permanente.
+     * Função responsavel por armazenar o Cartão de Credito do Cliente no banco de dados.
+     * @param cliente - Recebe um objeto Cartão a fim de torna-lo permanente.
      */
-    public static void createCliente(Cliente cliente){
+    public static void createCartao(Cartao cartao){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.persist(cliente);
+        entityManager.persist(cartao);
         entityManager.flush();
 
         entityTransaction.commit();
         entityManager.close();
 
-        System.out.println("Cliente cadastrado com sucesso");
+        System.out.println("Cartão cadastrado com sucesso");
     }
 
     /** 
-     * Função responsavel por atualizar os dados dos clientes no banco de dados.
-     * @param cliente - Recebe um objeto Cliente com ID e os dados a serem atualizados.
+     * Função responsavel por atualizar os dados dos cartões no banco de dados.
+     * @param cartao - Recebe um objeto Cartao com ID e os dados a serem atualizados.
      */
-    public static void updateCliente(Cliente cliente){
+    public static void updateCartao(Cartao cartao){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.merge(cliente);
+        entityManager.merge(cartao);
         entityManager.flush();
 
         entityTransaction.commit();
         entityManager.close();
 
-        System.out.println("Cliente atualizado com sucesso");
+        System.out.println("Cartão atualizado com sucesso");
     }
 
     
     /** 
-     * Função responsavel por deletar os clientes no banco de dados.
-     * @param cliente - Recebe a chave primaria do objeto fim de remove-lo do banco.
+     * Função responsavel por deletar os cartões no banco de dados.
+     * @param cartao - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteCliente(int cliente_id){
+    public static void deleteCartao(int cartao_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-        
-        Cliente cliente = entityManager.find(Cliente.class, cliente_id);
-        entityManager.remove(cliente);
+
+        Cartao cartao = entityManager.find(Cartao.class, cartao_id);
+        entityManager.remove(cartao);
 
         entityTransaction.commit();
         entityManager.close();
-        System.out.println("Cliente deletado com sucesso");
+        System.out.println("Cartão deletado com sucesso");
     }
 
     
     /** 
-     * Função responsavel por encontrar um determinado cliente no banco de dados.
-     * @param cliente_id - Chave primaria do objeto cliente.
-     * @return Cliente - Se encontra-lo retorna o objeto caso contrario retorna null.
+     * Função responsavel por encontrar um determinado cartão no banco de dados.
+     * @param cartao_id - Chave primaria do objeto cartao.
+     * @return Cartao - Se encontra-lo retorna o objeto caso contrario retorna null.
      */
-    public static Cliente findCliente_byID(int cliente_id){
+    public static Cartao findCartao_byID(int cartao_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        Cliente cliente = entityManager.find(Cliente.class, cliente_id);
+        Cartao cartao = entityManager.find(Cartao.class, cartao_id);
         
         entityManager.close();
 
-        if (cliente != null){
-            System.out.println("Cliente encontrado");
-            return cliente;
+        if (cartao != null){
+            System.out.println("Cartão encontrado");
+            return cartao;
         } else {
-            System.out.println("Cliente não encontrado");
+            System.out.println("Cartão não encontrado");
             return null;
         }
     }
 
     
     /** 
-     * Função responsavel por retornar 10 dos clientes presentes no banco de dados.
-     * @return List<Cliente> - retorna uma lista com até 10 clientes.
+     * Função responsavel por retornar 10 dos cartões presentes no banco de dados.
+     * @return List<Cartao> - retorna uma lista com até 10 cartoes.
      */
-    public static List<Cliente> readClientes(){
+    public static List<Cartao> readCartoes(){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        TypedQuery<Cliente> clienteQuery = entityManager.createQuery("from Cliente", Cliente.class);
-        List<Cliente> clientes = clienteQuery.setMaxResults(10).getResultList();
+        TypedQuery<Cartao> cartaoQuery = entityManager.createQuery("from Cartao", Cartao.class);
+        List<Cartao> cartoes = cartaoQuery.setMaxResults(10).getResultList();
         
         entityManager.close();
 
-        if (clientes.size() > 0){
-            System.out.println("Clientes encontrados");
-            return clientes;
+        if (cartoes.size() > 0){
+            System.out.println("Cartões encontrados");
+            return cartoes;
         } else {
-            System.out.println("Não foram encontrados cliente no banco de dados");
+            System.out.println("Não foram encontrados cartões no banco de dados");
             return null;
         }
     }

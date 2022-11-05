@@ -1,5 +1,4 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

@@ -1,5 +1,4 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -31,6 +30,19 @@ public class Endereco implements java.io.Serializable {
 	public Endereco(EnderecoId id, Cliente cliente, String enderecoRua, String enderecoBairro, String enderecoCidade,
 			String enderecoEstado) {
 		this.id = id;
+		this.cliente = cliente;
+		this.enderecoRua = enderecoRua;
+		this.enderecoBairro = enderecoBairro;
+		this.enderecoCidade = enderecoCidade;
+		this.enderecoEstado = enderecoEstado;
+	}
+
+    public Endereco(Cliente cliente, String enderecoRua, String enderecoBairro, String enderecoCidade,
+			String enderecoEstado) {
+        EnderecoId enderecoID = new EnderecoId();
+        enderecoID.setEnderecoCliente(cliente.getClienteId());
+		this.id = enderecoID;
+        enderecoID = null;
 		this.cliente = cliente;
 		this.enderecoRua = enderecoRua;
 		this.enderecoBairro = enderecoBairro;

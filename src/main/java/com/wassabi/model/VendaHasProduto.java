@@ -1,5 +1,4 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -30,6 +29,22 @@ public class VendaHasProduto implements java.io.Serializable {
 		this.id = id;
 		this.produto = produto;
 		this.venda = venda;
+		this.quantidade = quantidade;
+	}
+
+    public VendaHasProduto(Produto produto, Venda venda, int quantidade) {
+		this.id = new VendaHasProdutoId(venda.getVendaId(), produto.getProdutoId());
+		this.produto = produto;
+		this.venda = venda;
+		this.quantidade = quantidade;
+	}
+
+    public VendaHasProduto(Produto produto, int quantidade) {
+        VendaHasProdutoId vhpi = new VendaHasProdutoId();
+        vhpi.setProdutoId(produto.getProdutoId());
+		this.id = vhpi;
+        vhpi = null;
+		this.produto = produto;
 		this.quantidade = quantidade;
 	}
 

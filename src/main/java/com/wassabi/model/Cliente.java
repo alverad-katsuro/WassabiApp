@@ -1,13 +1,15 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -141,7 +143,7 @@ public class Cliente implements java.io.Serializable {
     /** 
      * @return Set<Venda>
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<Venda> getVendas() {
 		return this.vendas;
 	}
@@ -158,7 +160,7 @@ public class Cliente implements java.io.Serializable {
     /** 
      * @return Set<Cartao>
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<Cartao> getCartaos() {
 		return this.cartaos;
 	}
@@ -175,7 +177,7 @@ public class Cliente implements java.io.Serializable {
     /** 
      * @return Set<Endereco>
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<Endereco> getEnderecos() {
 		return this.enderecos;
 	}

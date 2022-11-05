@@ -1,13 +1,15 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,16 +23,19 @@ public class Categoria implements java.io.Serializable {
 
 	private Integer categoriaId;
 	private String categoriaDescricao;
+    private String categoriaNome;
 	private Set<Produto> produtos = new HashSet<Produto>(0);
 
 	public Categoria() {
 	}
 
-	public Categoria(String categoriaDescricao) {
+	public Categoria(String categoriaNome, String categoriaDescricao) {
+		this.categoriaNome = categoriaNome;
 		this.categoriaDescricao = categoriaDescricao;
 	}
-
-	public Categoria(String categoriaDescricao, Set<Produto> produtos) {
+    
+	public Categoria(String categoriaNome, String categoriaDescricao, Set<Produto> produtos) {
+        this.categoriaNome = categoriaNome;
 		this.categoriaDescricao = categoriaDescricao;
 		this.produtos = produtos;
 	}
@@ -55,6 +60,23 @@ public class Categoria implements java.io.Serializable {
 		this.categoriaId = categoriaId;
 	}
 
+
+    /** 
+     * @return String
+     */
+    @Column(name = "categoria_nome", nullable = false, length = 30)
+	public String getCategoriaNome() {
+		return this.categoriaNome;
+	}
+
+	
+    /** 
+     * @param categoriaNome
+     */
+    public void setCategoriaNome(String categoriaNome) {
+		this.categoriaNome = categoriaNome;
+	}
+
 	
     /** 
      * @return String
@@ -76,7 +98,7 @@ public class Categoria implements java.io.Serializable {
     /** 
      * @return Set<Produto>
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<Produto> getProdutos() {
 		return this.produtos;
 	}

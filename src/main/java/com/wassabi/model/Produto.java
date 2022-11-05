@@ -1,13 +1,15 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -140,7 +142,7 @@ public class Produto implements java.io.Serializable {
     /** 
      * @return Set<VendaHasProduto>
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<VendaHasProduto> getVendaHasProdutos() {
 		return this.vendaHasProdutos;
 	}

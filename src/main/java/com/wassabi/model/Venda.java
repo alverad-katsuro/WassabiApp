@@ -1,13 +1,15 @@
 package com.wassabi.model;
-// Generated 4 de nov. de 2022 18:56:39 by Hibernate Tools 4.3.6.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,7 @@ public class Venda implements java.io.Serializable {
 
 	private Integer vendaId;
 	private Cliente cliente;
-	private double vendaTotal;
+	private double vendaTotal = 0.0;
 	private Set<VendaHasProduto> vendaHasProdutos = new HashSet<VendaHasProduto>(0);
 
 	public Venda() {
@@ -99,7 +101,7 @@ public class Venda implements java.io.Serializable {
     /** 
      * @return Set<VendaHasProduto>
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<VendaHasProduto> getVendaHasProdutos() {
 		return this.vendaHasProdutos;
 	}
@@ -111,6 +113,45 @@ public class Venda implements java.io.Serializable {
     public void setVendaHasProdutos(Set<VendaHasProduto> vendaHasProdutos) {
 		this.vendaHasProdutos = vendaHasProdutos;
 	}
+
+
+    
+    /** 
+     * Adiciona um Produto a venda e atualiza o valor da venda.
+     * @param produto
+     */
+    public void addProduto(VendaHasProduto produto){
+        produto.setVenda(this);
+        this.vendaHasProdutos.add(produto);
+        this.vendaTotal += produto.getProduto().getProdutoPreco() * produto.getQuantidade();
+    }
+
+
+    
+    /** 
+     * Adiciona um Produto a venda e atualiza o valor da venda.
+     * @param produto
+     */
+    public void addProduto(Produto produto){
+        VendaHasProduto vhpi = new VendaHasProduto(produto, 1);
+        vhpi.setVenda(this);
+        this.vendaHasProdutos.add(vhpi);
+        this.vendaTotal += produto.getProdutoPreco();
+    }
+
+
+    
+    /** 
+     * Adiciona um Produto a venda e atualiza o valor da venda.
+     * @param produto
+     * @param quantidade
+     */
+    public void addProduto(Produto produto, int quantidade){
+        VendaHasProduto vhpi = new VendaHasProduto(produto, quantidade);
+        vhpi.setVenda(this);
+        this.vendaHasProdutos.add(vhpi);
+        this.vendaTotal += produto.getProdutoPreco() * quantidade;
+    }
 
     
     /** 

@@ -11,6 +11,7 @@ CREATE TABLE Produto (
 
 CREATE TABLE Categoria (
 	categoria_id int(30) NOT NULL AUTO_INCREMENT,
+	categoria_nome varchar(30) NOT NULL,
 	categoria_descricao varchar(60) NOT NULL,
 	PRIMARY KEY (categoria_id)
 );
@@ -37,7 +38,7 @@ CREATE TABLE Endereco (
 CREATE TABLE Venda (
 	venda_id int(30) NOT NULL AUTO_INCREMENT,
 	venda_cliente int(30) NOT NULL,
-	venda_total double(30,2) NOT NULL,
+	venda_total double(30,2) NOT NULL DEFAULT 0.0,
 	PRIMARY KEY (venda_id)
 );
 
@@ -51,7 +52,7 @@ CREATE TABLE venda_has_produto (
 CREATE TABLE Cartao (
 	cartao_id int(30) NOT NULL AUTO_INCREMENT,
 	cartao_cliente int(30) NOT NULL,
-	cartao_numero varchar(16) NOT NULL,
+	cartao_numero varchar(19) NOT NULL,
 	PRIMARY KEY (cartao_id,cartao_cliente)
 );
 

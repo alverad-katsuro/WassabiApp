@@ -1,27 +1,29 @@
 package com.wassabi.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.wassabi.App;
 import com.wassabi.model.Endereco;
 import com.wassabi.model.EnderecoId;
 
+/**
+* Interface para realizar o cadastro do Endereço do Cliente.
+* @author Alfredo Gabriel
+* @version 1.0
+* @since 04/11/2022
+*/
 public class EnderecoDAO {
     
-    /** 
-     * @param args
-     */
-    public static void main(String[] args) {
-        
-    }
-
     private EnderecoDAO() {}
-
     
     /** 
-     * @param endereco
+     * Função responsavel por armazenar o endereço no banco de dados.
+     * @param endereco - Instancia de endereço a ser armazenada no banco.
      */
     public static void createEndereco(Endereco endereco){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
@@ -39,7 +41,8 @@ public class EnderecoDAO {
 
     
     /** 
-     * @param endereco
+     * Função responsavel por atualizar os dados dos endereços no banco de dados.
+     * @param endereco - Recebe um objeto Endereço com ID e os dados a serem atualizados.
      */
     public static void updateEndereco(Endereco endereco){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
@@ -55,11 +58,32 @@ public class EnderecoDAO {
         System.out.println("Endereço atualizado com sucesso");
     }
 
+    /** 
+     * Função responsavel por deletar um Endereço no banco de dados. Não utilize está função, caso você queira deletar um cliente, seu endereço ira ser deletado junto com ele.
+     * Observação, não delete um endereço, pois um cliente deve ter um endereço.
+     * @param endereco - Recebe a chave primaria do objeto fim de remove-lo do banco.
+     */
+    public static void deleteEndereco(int endereco_id){
+        EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        Endereco endereco = entityManager.find(Endereco.class, endereco_id);
+        entityManager.remove(endereco);
+
+        entityTransaction.commit();
+        entityManager.close();
+
+        System.out.println("Endereco deletado com sucesso");
+    }
+
     
     /** 
-     * @param endereco_id
-     * @param cliente_id
-     * @return Endereco
+     * Função responsavel por encontrar um determinado endereco no banco de dados através das chaves primarias.
+     * @param endereco_id - Chave priamria, endereco_id, presente na Tabela Endereço.
+     * @param cliente_id - Chave priamria, endereco_cliente, presente na Tabela Endereço.
+     * @return Endereco - Retorna um Objeto Endereco caso o mesmo seja encontrado caso contrario retorna null.
      */
     public static Endereco findEndereco_byID(int endereco_id, int cliente_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
@@ -80,21 +104,28 @@ public class EnderecoDAO {
         }
     }
 
-    
     /** 
-     * @param endereco
+     * Função responsavel por retornar 10 dos enderecos presentes no banco de dados.
+     * @return List<Endereco> - retorna uma lista com até 10 enderecos.
      */
-    public static void deleteEndereco(Endereco endereco){
+    public static List<Endereco> readEnderecos(){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
-        entityManager.remove(endereco);
-
-        entityTransaction.commit();
+        TypedQuery<Endereco> enderecoQuery = entityManager.createQuery("from Endereco", Endereco.class);
+        List<Endereco> enderecos = enderecoQuery.setMaxResults(10).getResultList();
+        
         entityManager.close();
 
-        System.out.println("Endereco deletado com sucesso");
+        if (enderecos.size() > 0){
+            System.out.println("Enderecos encontrados");
+            return enderecos;
+        } else {
+            System.out.println("Não foram encontrados cliente no banco de dados");
+            return null;
+        }
     }
+    
 }
