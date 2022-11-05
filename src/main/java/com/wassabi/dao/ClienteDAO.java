@@ -31,6 +31,7 @@ public class ClienteDAO {
         entityTransaction.begin();
         
         entityManager.persist(cliente);
+        cliente.updateEnderecoID();
         entityManager.flush();
 
         entityTransaction.commit();

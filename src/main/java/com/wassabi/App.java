@@ -9,19 +9,18 @@ import javax.persistence.Persistence;
 public class App {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("WassabiApp");
 
-    /** 
-     * @param args
-     */
-    public static void main(String[] args) {
-        
-    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
 
-    
-    /** 
+	}
+
+
+	/** 
      * @return EntityManagerFactory
      */
     public static EntityManagerFactory getEntityManagerFactory() {
         return entityManagerFactory;
     } 
-    
 }

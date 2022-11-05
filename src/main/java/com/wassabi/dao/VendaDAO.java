@@ -31,13 +31,12 @@ public class VendaDAO {
         entityTransaction.begin();
                 
         entityManager.persist(venda);
+        venda.updateProdutosID();
         entityManager.flush();
         
         entityTransaction.commit();
         entityManager.close();
         
-        venda.getVendaHasProdutos().forEach(VendaHasProdutoDAO::createVendaHasProduto);
-
         System.out.println("Venda cadastrado com sucesso");
     }
 
