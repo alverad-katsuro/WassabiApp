@@ -206,4 +206,19 @@ public class Cliente implements java.io.Serializable {
         return (String.format("%s %s", this.clienteNome, this.clienteSobrenome));
     }
 
+
+    @Transient
+    public void addEndereco(Endereco endereco){
+        this.enderecos.add(endereco);
+    }
+
+    /*
+     * Esta função tem como objetivo ser uma rotina interna do ClienteDAO.create pois a ID do Endereco não está atualizando.
+     */
+    public void updateEnderecoID(){
+        this.enderecos.forEach(endereco -> {
+            endereco.getId().setEnderecoCliente(this.clienteId);
+        });
+    }
+
 }

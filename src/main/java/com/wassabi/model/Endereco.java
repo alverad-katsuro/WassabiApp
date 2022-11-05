@@ -23,31 +23,34 @@ public class Endereco implements java.io.Serializable {
 	private String enderecoBairro;
 	private String enderecoCidade;
 	private String enderecoEstado;
+	private String enderecoPais;
+	private String enderecoCep;
 
 	public Endereco() {
 	}
 
 	public Endereco(EnderecoId id, Cliente cliente, String enderecoRua, String enderecoBairro, String enderecoCidade,
-			String enderecoEstado) {
+			String enderecoEstado, String enderecoCep, String enderecoPais) {
 		this.id = id;
 		this.cliente = cliente;
 		this.enderecoRua = enderecoRua;
 		this.enderecoBairro = enderecoBairro;
 		this.enderecoCidade = enderecoCidade;
 		this.enderecoEstado = enderecoEstado;
+        this.enderecoCep = enderecoCep;
+		this.enderecoPais = enderecoPais;
 	}
 
     public Endereco(Cliente cliente, String enderecoRua, String enderecoBairro, String enderecoCidade,
-			String enderecoEstado) {
-        EnderecoId enderecoID = new EnderecoId();
-        enderecoID.setEnderecoCliente(cliente.getClienteId());
-		this.id = enderecoID;
-        enderecoID = null;
+			String enderecoEstado, String enderecoCep, String enderecoPais) {
+	    this.id = new EnderecoId();
 		this.cliente = cliente;
 		this.enderecoRua = enderecoRua;
 		this.enderecoBairro = enderecoBairro;
 		this.enderecoCidade = enderecoCidade;
 		this.enderecoEstado = enderecoEstado;
+		this.enderecoCep = enderecoCep;
+		this.enderecoPais = enderecoPais;
 	}
 
 	
@@ -155,6 +158,38 @@ public class Endereco implements java.io.Serializable {
      */
     public void setEnderecoEstado(String enderecoEstado) {
 		this.enderecoEstado = enderecoEstado;
+	}
+
+    /** 
+     * @return String
+     */
+    @Column(name = "endereco_pais", nullable = false, length = 30)
+	public String getEnderecoPais() {
+		return this.enderecoPais;
+	}
+
+	
+    /** 
+     * @param enderecoPais
+     */
+    public void setEnderecoPais(String enderecoPais) {
+		this.enderecoPais = enderecoPais;
+	}
+
+    /** 
+     * @return String
+     */
+    @Column(name = "endereco_cep", nullable = false, length = 10)
+	public String getEnderecoCep() {
+		return this.enderecoCep;
+	}
+
+	
+    /** 
+     * @param enderecoCep
+     */
+    public void setEnderecoCep(String enderecoCep) {
+		this.enderecoCep = enderecoCep;
 	}
 
     

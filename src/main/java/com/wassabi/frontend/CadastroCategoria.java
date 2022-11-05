@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 
 public class CadastroCategoria extends JPanel {
 	private JTextField TF_categoria_nome;
@@ -20,7 +20,7 @@ public class CadastroCategoria extends JPanel {
 	public CadastroCategoria() {
 		setFont(new Font("Arial", Font.PLAIN, 16));
 		setBounds(100, 100, 1000, 606);
-		setLayout(new MigLayout("", "[250px][500px:n][250px:250px]", "[][][][][::500px][200px]"));
+		//setLayout(new MigLayout("", "[250px][500px:n][250px:250px]", "[][][][][::500px][200px]"));
 		
 		JLabel lblNewLabel = new JLabel("Nome da Categoria");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
