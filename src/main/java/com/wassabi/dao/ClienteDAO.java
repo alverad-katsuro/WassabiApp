@@ -61,14 +61,15 @@ public class ClienteDAO {
     
     /** 
      * Função responsavel por deletar os clientes no banco de dados.
-     * @param cliente - Recebe um objeto Cliente com ID a fim de remove-lo do banco.
+     * @param cliente - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteCliente(Cliente cliente){
+    public static void deleteCliente(int cliente_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-
+        
+        Cliente cliente = entityManager.find(Cliente.class, cliente_id);
         entityManager.remove(cliente);
 
         entityTransaction.commit();

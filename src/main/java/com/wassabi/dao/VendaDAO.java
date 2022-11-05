@@ -27,14 +27,16 @@ public class VendaDAO {
     public static void createVenda(Venda venda){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction entityTransaction = entityManager.getTransaction();
+        EntityTransaction entityTransaction = entityManager.getTransaction();        
         entityTransaction.begin();
-        
+                
         entityManager.persist(venda);
         entityManager.flush();
-
+        
         entityTransaction.commit();
         entityManager.close();
+        
+        venda.getVendaHasProdutos().forEach(VendaHasProdutoDAO::createVendaHasProduto);
 
         System.out.println("Venda cadastrado com sucesso");
     }
@@ -61,14 +63,15 @@ public class VendaDAO {
     
     /** 
      * Função responsavel por deletar os vendas no banco de dados.
-     * @param venda - Recebe um objeto Venda com ID a fim de remove-lo do banco.
+     * @param venda - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteVenda(Venda venda){
+    public static void deleteVenda(Venda venda_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
+        Venda venda = entityManager.find(Venda.class, venda_id);
         entityManager.remove(venda);
 
         entityTransaction.commit();

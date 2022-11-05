@@ -61,14 +61,15 @@ public class CategoriaDAO {
     
     /** 
      * Função responsavel por deletar os categorias no banco de dados.
-     * @param categoria - Recebe um objeto Categoria com ID a fim de remove-lo do banco.
+     * @param categoria - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteCategoria(Categoria categoria){
+    public static void deleteCategoria(int categoria_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
+        Categoria categoria = entityManager.find(Categoria.class, categoria_id);
         entityManager.remove(categoria);
 
         entityTransaction.commit();

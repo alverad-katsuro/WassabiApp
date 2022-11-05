@@ -24,7 +24,7 @@ public class CartaoDAO {
      * Função responsavel por armazenar o Cartão de Credito do Cliente no banco de dados.
      * @param cliente - Recebe um objeto Cartão a fim de torna-lo permanente.
      */
-    public static void createCliente(Cartao cartao){
+    public static void createCartao(Cartao cartao){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -61,14 +61,15 @@ public class CartaoDAO {
     
     /** 
      * Função responsavel por deletar os cartões no banco de dados.
-     * @param cartao - Recebe um objeto Cartao com ID a fim de remove-lo do banco.
+     * @param cartao - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteCartao(Cartao cartao){
+    public static void deleteCartao(int cartao_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
+        Cartao cartao = entityManager.find(Cartao.class, cartao_id);
         entityManager.remove(cartao);
 
         entityTransaction.commit();

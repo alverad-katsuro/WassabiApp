@@ -61,14 +61,15 @@ public class ProdutoDAO {
     
     /** 
      * Função responsavel por deletar os produtos no banco de dados.
-     * @param produto - Recebe um objeto Produto com ID a fim de remove-lo do banco.
+     * @param produto - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteProduto(Produto produto){
+    public static void deleteProduto(int produto_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
+        Produto produto = entityManager.find(Produto.class, produto_id);
         entityManager.remove(produto);
 
         entityTransaction.commit();

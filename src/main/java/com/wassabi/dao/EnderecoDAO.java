@@ -20,7 +20,6 @@ import com.wassabi.model.EnderecoId;
 public class EnderecoDAO {
     
     private EnderecoDAO() {}
-
     
     /** 
      * Função responsavel por armazenar o endereço no banco de dados.
@@ -62,14 +61,15 @@ public class EnderecoDAO {
     /** 
      * Função responsavel por deletar um Endereço no banco de dados. Não utilize está função, caso você queira deletar um cliente, seu endereço ira ser deletado junto com ele.
      * Observação, não delete um endereço, pois um cliente deve ter um endereço.
-     * @param endereco - Objeto Endereço com ID a ser deletado no banco de dados.
+     * @param endereco - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteEndereco(Endereco endereco){
+    public static void deleteEndereco(int endereco_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
+        Endereco endereco = entityManager.find(Endereco.class, endereco_id);
         entityManager.remove(endereco);
 
         entityTransaction.commit();

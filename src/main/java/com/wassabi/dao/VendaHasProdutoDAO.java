@@ -29,7 +29,7 @@ public class VendaHasProdutoDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
-        
+        venda.getId().setVendaId(venda.getVenda().getVendaId());
         entityManager.persist(venda);
         entityManager.flush();
 
@@ -61,14 +61,15 @@ public class VendaHasProdutoDAO {
     
     /** 
      * Função responsavel por deletar os vendas no banco de dados.
-     * @param venda - Recebe um objeto VendaHasProduto com ID a fim de remove-lo do banco.
+     * @param venda - Recebe a chave primaria do objeto fim de remove-lo do banco.
      */
-    public static void deleteVendaHasProduto(VendaHasProduto venda){
+    public static void deleteVendaHasProduto(int venda_id){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
 
+        VendaHasProduto venda = entityManager.find(VendaHasProduto.class, venda_id);
         entityManager.remove(venda);
 
         entityTransaction.commit();
