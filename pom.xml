@@ -37,6 +37,18 @@
         <!-- https://mvnrepository.com/artifact/antlr/antlr -->
 
 
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>19</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>19</version>
+        </dependency>
+        
         <!-- Hibernete dependencies-->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -75,6 +87,21 @@
             <configuration>
             <release>17</release>
             </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <executions>
+                <execution>
+                    <!-- Default configuration for running -->
+                    <!-- Usage: mvn clean javafx:run -->
+                    <id>default-cli</id>
+                    <configuration>
+                        <mainClass>com.curso3.App</mainClass>
+                    </configuration>
+                </execution>
+            </executions>
         </plugin>
         </plugins>
     </build>

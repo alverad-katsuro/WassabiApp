@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.wassabi.dao.VendaDAO;
+import com.wassabi.frontend.CadastroCategoria;
 import com.wassabi.model.Venda;
 
 import net.miginfocom.swing.MigLayout;
@@ -147,6 +148,14 @@ public class App extends JFrame {
 		panel.add(B_novoCliente, "cell 0 3,grow");
 		
 		JButton B_novoCategoria = new JButton("Nova Categoria");
+        B_novoCategoria.addActionListener(ev -> {
+            System.out.println("aaaaaaaaaaa");
+            this.contentPane.removeAll();
+            JPanel cadastro = new CadastroCategoria();
+            this.contentPane = cadastro;
+            this.contentPane.revalidate();
+            this.contentPane.repaint();
+        });
 		panel.add(B_novoCategoria, "cell 1 3,grow");
 		
 		JButton B_atualizarCategoria = new JButton("Atualizar Categoria");

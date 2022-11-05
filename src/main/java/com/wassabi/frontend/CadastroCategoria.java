@@ -2,14 +2,14 @@ package com.wassabi.frontend;
 
 import java.awt.Font;
 
-import javax.swing.JPanel;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import net.miginfocom.swing.MigLayout;
 
 public class CadastroCategoria extends JPanel {
 	private JTextField TF_categoria_nome;
