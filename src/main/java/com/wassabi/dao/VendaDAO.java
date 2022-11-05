@@ -124,7 +124,7 @@ public class VendaDAO {
             return vendas;
         } else {
             System.out.println("Não foram encontrados venda no banco de dados");
-            return null;
+            return vendas;
         }
     }
 }

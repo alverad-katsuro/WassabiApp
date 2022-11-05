@@ -32,6 +32,7 @@ public class ClienteDAO {
         
         entityManager.persist(cliente);
         cliente.updateEnderecoID();
+        cliente.updateCartaoID();
         entityManager.flush();
 
         entityTransaction.commit();
@@ -124,7 +125,7 @@ public class ClienteDAO {
             return clientes;
         } else {
             System.out.println("Não foram encontrados cliente no banco de dados");
-            return null;
+            return clientes;
         }
     }
 }

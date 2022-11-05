@@ -123,7 +123,7 @@ public class CartaoDAO {
             return cartoes;
         } else {
             System.out.println("Não foram encontrados cartões no banco de dados");
-            return null;
+            return cartoes;
         }
     }
 }

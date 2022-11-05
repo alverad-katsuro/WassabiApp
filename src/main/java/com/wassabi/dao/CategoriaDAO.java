@@ -134,7 +134,7 @@ public class CategoriaDAO {
             return categorias;
         } else {
             System.out.println("Não foram encontrados categoria no banco de dados");
-            return null;
+            return categorias;
         }
     }
 }

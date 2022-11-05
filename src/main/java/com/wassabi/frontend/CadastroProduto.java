@@ -73,7 +73,6 @@ public class CadastroProduto extends JFrame {
 		JList categoria_lista = new JList(CategoriaDAO.readCategorias().toArray());
 		categoria_lista.setSelectedIndex(1);
 		categoria_lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        Object[] categorias = CategoriaDAO.readCategorias().toArray();
 		
 		JLabel lblNome_1_1_1 = new JLabel("Descrição");
 		lblNome_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));

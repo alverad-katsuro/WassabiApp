@@ -212,12 +212,26 @@ public class Cliente implements java.io.Serializable {
         this.enderecos.add(endereco);
     }
 
+    @Transient
+    public void addCartao(Cartao cartao){
+        this.cartaos.add(cartao);
+    }
+
     /*
      * Esta função tem como objetivo ser uma rotina interna do ClienteDAO.create pois a ID do Endereco não está atualizando.
      */
     public void updateEnderecoID(){
         this.enderecos.forEach(endereco -> {
             endereco.getId().setEnderecoCliente(this.clienteId);
+        });
+    }
+
+    /*
+     * Esta função tem como objetivo ser uma rotina interna do ClienteDAO.create pois a ID do Endereco não está atualizando.
+     */
+    public void updateCartaoID(){
+        this.cartaos.forEach(cartao -> {
+            cartao.getId().setCartaoCliente(this.clienteId);
         });
     }
 
