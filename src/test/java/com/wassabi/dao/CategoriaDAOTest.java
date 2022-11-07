@@ -16,6 +16,7 @@ public class CategoriaDAOTest {
         assertTrue(categoria.getCategoriaId() == encontrada.getCategoriaId());
         assertTrue(categoria.getCategoriaNome().equals(encontrada.getCategoriaNome()));
         assertTrue(categoria.getCategoriaDescricao().equals(encontrada.getCategoriaDescricao()));
+        CategoriaDAO.deleteCategoria(encontrada.getCategoriaId());
 	}
 
 	@Test
@@ -28,13 +29,13 @@ public class CategoriaDAOTest {
         assertTrue(categoria.getCategoriaId() == encontrada.getCategoriaId());
         assertTrue(categoria.getCategoriaNome().equals(encontrada.getCategoriaNome()));
         assertTrue(categoria.getCategoriaDescricao().equals(encontrada.getCategoriaDescricao()));
+        CategoriaDAO.deleteCategoria(encontrada.getCategoriaId());
 	}
 
 	@Test
 	public void testDeleteCategoria() throws Exception {
         Categoria categoria = new Categoria("categoriaaaa", "alguma_descricao");
         CategoriaDAO.createCategoria(categoria);
-
         CategoriaDAO.deleteCategoria(categoria.getCategoriaId());
         Categoria encontrada = CategoriaDAO.findCategoria_byID(categoria.getCategoriaId());
         assertTrue(encontrada == null);

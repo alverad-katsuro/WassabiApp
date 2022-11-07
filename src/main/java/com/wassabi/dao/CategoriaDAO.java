@@ -18,30 +18,21 @@ import com.wassabi.model.Categoria;
 */
 public class CategoriaDAO {
 
-    public static void main(String[] args) {
-        Categoria categoria1 = new Categoria("Promoção", "Não tem");
-        Categoria categoria2 = new Categoria("Temaki", "Não tem");
-        Categoria categoria3 = new Categoria("Entradas", "Não tem");
-        Categoria categoria4 = new Categoria("Hall Wassabi", "Não tem");
-        CategoriaDAO.createCategoria(categoria1);
-        CategoriaDAO.createCategoria(categoria2);
-        CategoriaDAO.createCategoria(categoria3);
-        CategoriaDAO.createCategoria(categoria4);
-    }
-
     private CategoriaDAO(){}
       
     /** 
      * Função responsavel por armazenar os categorias no banco de dados.
      * @param categoria - Recebe um objeto categoria a fim de torna-lo permanente.
      */
-    public static void createCategoria(Categoria categoria){
+    public static void createCategoria(Categoria ...categorias){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.persist(categoria);
+        for (Categoria categoria : categorias) {
+            entityManager.persist(categoria);
+        }
         entityManager.flush();
 
         entityTransaction.commit();

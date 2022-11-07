@@ -30,6 +30,7 @@ public class VendaDAO {
         EntityTransaction entityTransaction = entityManager.getTransaction();        
         entityTransaction.begin();
                 
+        entityManager.detach(venda.getCliente());
         entityManager.persist(venda);
         venda.updateProdutosID();
         entityManager.flush();
@@ -115,7 +116,32 @@ public class VendaDAO {
         entityTransaction.begin();
 
         TypedQuery<Venda> vendaQuery = entityManager.createQuery("from Venda", Venda.class);
-        List<Venda> vendas = vendaQuery.setMaxResults(10).getResultList();
+        List<Venda> vendas = vendaQuery.getResultList();
+        
+        entityManager.close();
+
+        if (vendas.size() > 0){
+            System.out.println("Vendas encontrados");
+            return vendas;
+        } else {
+            System.out.println("Não foram encontrados venda no banco de dados");
+            return vendas;
+        }
+    }
+
+    /** 
+     * Função responsavel por retornar 10 dos vendas presentes no banco de dados.
+     * @param quantidade - Define a quantidade de elementos a serem encontrados.
+     * @return List<Venda> - retorna uma lista com até n vendas.
+     */
+    public static List<Venda> readVendas(int quantidade){
+        EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        TypedQuery<Venda> vendaQuery = entityManager.createQuery("from Venda", Venda.class);
+        List<Venda> vendas = vendaQuery.setMaxResults(quantidade).getResultList();
         
         entityManager.close();
 

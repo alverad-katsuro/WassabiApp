@@ -23,6 +23,7 @@ public class VendaHasProduto implements java.io.Serializable {
 	private int quantidade;
 
 	public VendaHasProduto() {
+        //this.id = new VendaHasProdutoId();
 	}
 
 	public VendaHasProduto(VendaHasProdutoId id, Produto produto, Venda venda, int quantidade) {
@@ -33,7 +34,8 @@ public class VendaHasProduto implements java.io.Serializable {
 	}
 
     public VendaHasProduto(Produto produto, Venda venda, int quantidade) {
-		this.id = new VendaHasProdutoId(venda.getVendaId(), produto.getProdutoId());
+		this.id = new VendaHasProdutoId();
+        this.id.setProdutoId(produto.getProdutoId());
 		this.produto = produto;
 		this.venda = venda;
 		this.quantidade = quantidade;
@@ -131,4 +133,19 @@ public class VendaHasProduto implements java.io.Serializable {
                 + "]";
     }
 
+
+    /*
+     * 
+     */
+    public void incrementaProduto(){
+        this.quantidade += 1;
+    }
+
+
+    /*
+     * 
+     */
+    public void decrementaProduto(){
+        this.quantidade -= 1;
+    }
 }

@@ -6,22 +6,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.wassabi.model.Categoria;
 import com.wassabi.model.Cliente;
 import com.wassabi.model.Produto;
+import com.wassabi.model.Usuario;
 import com.wassabi.model.Venda;
 
 public class VendaDAOTest {
 
 	@Test
 	public void testCreateVenda() throws Exception {
-        Categoria categoria = new Categoria("Promoçãooooo", "Descrição");
-        CategoriaDAO.createCategoria(categoria);
-        Produto prod = new Produto(categoria, "Pizzazzzzzzzz", 75.0, "Pizza com bordas");
-        ProdutoDAO.createProduto(prod);
+        Produto prod = ProdutoDAO.findProduto_byID(1);
         
-        Cliente cliente = new Cliente("Alfredoo", "Gabriel", "000.000.000-00", "(91) 98448-7808");
-        ClienteDAO.createCliente(cliente);
+        Usuario user = UsuarioDAO.findUsuario_byID(1);
+        Cliente cliente = user.getCliente();
 
         Venda venda = new Venda(cliente);
         venda.addProduto(prod, 5);

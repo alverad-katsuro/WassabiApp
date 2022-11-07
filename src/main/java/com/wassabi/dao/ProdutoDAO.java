@@ -24,13 +24,15 @@ public class ProdutoDAO {
      * Função responsavel por armazenar os produtos no banco de dados.
      * @param produto - Recebe um objeto produto a fim de torna-lo permanente.
      */
-    public static void createProduto(Produto produto){
+    public static void createProduto(Produto ...produtos){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         
-        entityManager.persist(produto);
+        for (Produto produto : produtos) {
+            entityManager.persist(produto);
+        }
         entityManager.flush();
 
         entityTransaction.commit();
@@ -105,7 +107,7 @@ public class ProdutoDAO {
     
     /** 
      * Função responsavel por retornar 10 dos produtos presentes no banco de dados.
-     * @return List<Produto> - retorna uma lista com até 10 produtos.
+     * @return List<Produto> - retorna uma lista com todos produtos.
      */
     public static List<Produto> readProdutos(){
         EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
@@ -114,7 +116,33 @@ public class ProdutoDAO {
         entityTransaction.begin();
 
         TypedQuery<Produto> produtoQuery = entityManager.createQuery("from Produto", Produto.class);
-        List<Produto> produtos = produtoQuery.setMaxResults(10).getResultList();
+        List<Produto> produtos = produtoQuery.getResultList();
+        
+        entityManager.close();
+
+        if (produtos.size() > 0){
+            System.out.println("Produtos encontrados");
+            return produtos;
+        } else {
+            System.out.println("Não foram encontrados produto no banco de dados");
+            return produtos;
+        }
+    }
+
+
+    /** 
+     * Função responsavel por retornar 10 dos produtos presentes no banco de dados.
+     * @param quantidade - Define a quantidade de elementos a serem retornados.
+     * @return List<Produto> - retorna uma lista com até 10 produtos.
+     */
+    public static List<Produto> readProdutos(int quantidade){
+        EntityManagerFactory entityManagerFactory = App.getEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        TypedQuery<Produto> produtoQuery = entityManager.createQuery("from Produto", Produto.class);
+        List<Produto> produtos = produtoQuery.setMaxResults(quantidade).getResultList();
         
         entityManager.close();
 

@@ -33,6 +33,7 @@ public class Venda implements java.io.Serializable {
 	private Set<VendaHasProduto> vendaHasProdutos = new HashSet<VendaHasProduto>(0);
 
 	public Venda() {
+        this.vendaData = Calendar.getInstance();
 	}
 
 	public Venda(Cliente cliente) {
@@ -156,8 +157,7 @@ public class Venda implements java.io.Serializable {
      * @param produto
      */
     public void addProduto(Produto produto){
-        VendaHasProduto vhpi = new VendaHasProduto(produto, 1);
-        vhpi.setVenda(this);
+        VendaHasProduto vhpi = new VendaHasProduto(produto, this, 1);
         this.vendaHasProdutos.add(vhpi);
         this.vendaTotal += produto.getProdutoPreco();
     }
@@ -170,8 +170,7 @@ public class Venda implements java.io.Serializable {
      * @param quantidade
      */
     public void addProduto(Produto produto, int quantidade){
-        VendaHasProduto vhpi = new VendaHasProduto(produto, quantidade);
-        vhpi.setVenda(this);
+        VendaHasProduto vhpi = new VendaHasProduto(produto, this, quantidade);
         this.vendaHasProdutos.add(vhpi);
         this.vendaTotal += produto.getProdutoPreco() * quantidade;
     }

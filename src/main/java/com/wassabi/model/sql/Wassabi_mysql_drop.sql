@@ -12,6 +12,8 @@ ALTER TABLE `venda_has_produto` DROP FOREIGN KEY `venda_has_produto_fk1`;
 
 ALTER TABLE `Cartao` DROP FOREIGN KEY `Cartao_fk0`;
 
+ALTER TABLE Usuario DROP FOREIGN KEY Usuario_fk0;
+
 DROP TABLE Cartao;
 DROP TABLE Endereco;
 DROP TABLE venda_has_produto;
@@ -19,3 +21,4 @@ DROP TABLE Venda;
 DROP TABLE Produto;
 DROP TABLE Categoria;
 DROP TABLE Cliente;
+DROP TABLE Usuario;

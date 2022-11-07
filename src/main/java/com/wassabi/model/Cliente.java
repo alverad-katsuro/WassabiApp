@@ -29,6 +29,7 @@ public class Cliente implements java.io.Serializable {
 	private String clienteTelefone;
 	private Set<Venda> vendas = new HashSet<Venda>(0);
 	private Set<Cartao> cartaos = new HashSet<Cartao>(0);
+	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 	private Set<Endereco> enderecos = new HashSet<Endereco>(0);
 
 	public Cliente() {
@@ -174,6 +175,24 @@ public class Cliente implements java.io.Serializable {
 		this.cartaos = cartaos;
 	}
 
+
+    
+    /** 
+     * @return Set<Usuario>
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	public Set<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+
+	
+    /** 
+     * @param usuarios
+     */
+    public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 	
     /** 
      * @return Set<Endereco>
@@ -221,18 +240,21 @@ public class Cliente implements java.io.Serializable {
      * Esta função tem como objetivo ser uma rotina interna do ClienteDAO.create pois a ID do Endereco não está atualizando.
      */
     public void updateEnderecoID(){
-        this.enderecos.forEach(endereco -> {
-            endereco.getId().setEnderecoCliente(this.clienteId);
-        });
+        if (this.enderecos.size() > 0) {
+            this.enderecos.forEach(endereco -> {
+                endereco.getId().setEnderecoCliente(this.clienteId);
+            });    
+        }
     }
 
     /*
      * Esta função tem como objetivo ser uma rotina interna do ClienteDAO.create pois a ID do Endereco não está atualizando.
      */
     public void updateCartaoID(){
-        this.cartaos.forEach(cartao -> {
-            cartao.getId().setCartaoCliente(this.clienteId);
-        });
+        if (this.cartaos.size() > 0) {
+            this.cartaos.forEach(cartao -> {
+                cartao.getId().setCartaoCliente(this.clienteId);
+            });
+        }
     }
-
 }

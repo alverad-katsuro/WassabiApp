@@ -25,6 +25,15 @@ CREATE TABLE Cliente (
 	PRIMARY KEY (cliente_id)
 );
 
+CREATE TABLE Usuario (
+	usuario_id int(30) NOT NULL AUTO_INCREMENT,
+	usuario_email varchar(40) NOT NULL UNIQUE,
+	usuario_senha varchar(71) NOT NULL,
+	usuario_tipo enum('ADMINISTRADOR','CONSUMIDOR') NOT NULL,
+	usuario_cliente int(30) UNIQUE,
+	PRIMARY KEY (usuario_id)
+);
+
 CREATE TABLE Endereco (
 	endereco_id int(30) NOT NULL AUTO_INCREMENT,
     endereco_cliente int(30) NOT NULL,
@@ -70,3 +79,5 @@ ALTER TABLE Venda ADD CONSTRAINT Venda_fk0 FOREIGN KEY (venda_cliente) REFERENCE
 
 ALTER TABLE venda_has_produto ADD CONSTRAINT venda_has_produto_fk0 FOREIGN KEY (venda_id) REFERENCES Venda(venda_id);
 ALTER TABLE venda_has_produto ADD CONSTRAINT venda_has_produto_fk1 FOREIGN KEY (produto_id) REFERENCES Produto(produto_id);
+
+ALTER TABLE Usuario ADD CONSTRAINT Usuario_fk0 FOREIGN KEY (usuario_cliente) REFERENCES Cliente(cliente_id);
